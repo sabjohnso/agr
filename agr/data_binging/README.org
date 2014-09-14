@@ -1,0 +1,5 @@
+
+
+* GEDCOMX XML Schema
+http://www.gedcomx.org/gx.xsd
+

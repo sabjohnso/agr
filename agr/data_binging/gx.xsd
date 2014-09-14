@@ -1,0 +1,1293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" targetNamespace="http://gedcomx.org/v1/" elementFormDefault="qualified" xmlns:gx="http://gedcomx.org/v1/" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:element name="gedcomx" type="gx:Gedcomx"/>
+  <xs:element name="agent" type="gx:Agent"/>
+  <xs:element name="attribution" type="gx:Attribution"/>
+  <xs:element name="evidenceReference" type="gx:EvidenceReference"/>
+  <xs:element name="note" type="gx:Note"/>
+  <xs:element name="resourceReference" type="gx:ResourceReference"/>
+  <xs:element name="document" type="gx:Document"/>
+  <xs:element name="event" type="gx:Event"/>
+  <xs:element name="fact" type="gx:Fact"/>
+  <xs:element name="gender" type="gx:Gender"/>
+  <xs:element name="name" type="gx:Name"/>
+  <xs:element name="person" type="gx:Person"/>
+  <xs:element name="relationship" type="gx:Relationship"/>
+  <xs:element name="coverage" type="gx:Coverage"/>
+  <xs:element name="sourceDescription" type="gx:SourceDescription"/>
+  <xs:element name="sourceReference" type="gx:SourceReference"/>
+  <xs:complexType name="Gedcomx">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[<p>The GEDCOM X data formats define the serialization formats of the GEDCOM X conceptual model. The canonical documentation
+is provided by the formal specification documents:</p>
+<ul>
+<li><a href="https://github.com/FamilySearch/gedcomx/blob/master/specifications/conceptual-model-specification.md">The GEDCOM X Conceptual Model, Version 1.0</a></li>
+<li><a href="https://github.com/FamilySearch/gedcomx/blob/master/specifications/json-format-specification.md">The GEDCOM X JSON Format, Version 1.0</a></li>
+<li><a href="https://github.com/FamilySearch/gedcomx/blob/master/specifications/xml-format-specification.md">The GEDCOM X XML Format, Version 1.0</a></li>
+</ul>
+<p>This documentation is provided as a non-normative reference guide.</p>]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:HypermediaEnabledData">
+        <xs:sequence>
+          <xs:element name="attribution" type="gx:Attribution" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The attribution of this genealogical data.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="person" type="gx:Person" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The persons included in this genealogical data set.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="relationship" type="gx:Relationship" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The relationships included in this genealogical data set.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="sourceDescription" type="gx:SourceDescription" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The descriptions of sources included in this genealogical data set.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="agent" type="gx:Agent" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The agents included in this genealogical data set.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="event" type="gx:Event" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The events included in this genealogical data set.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="place" type="gx:PlaceDescription" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The places included in this genealogical data set.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="document" type="gx:Document" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The documents included in this genealogical data set.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The language of this genealogical data set. See <a href="http://www.w3.org/International/articles/language-tags/">http://www.w3.org/International/articles/language-tags/</a>.
+Note that some language-enabled elements MAY override the language.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[An address.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:ExtensibleData">
+        <xs:sequence>
+          <xs:element name="city" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The city.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="country" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The country.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="postalCode" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The postal code.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="stateOrProvince" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The state or province.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="street" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The street.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="street2" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Additional street information.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="street3" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Additional street information.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="value" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The value of the property, if it can be expressed as a string.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Agent">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[An agent, e.g. person, organization, or group. In genealogical research, an agent often
+takes the role of a contributor.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:HypermediaEnabledData">
+        <xs:sequence>
+          <xs:element name="account" type="gx:OnlineAccount" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The accounts that belong to this person or organization.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="address" type="gx:Address" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The addresses that belong to this person or organization.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="email" type="gx:ResourceReference" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The emails that belong to this person or organization.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="homepage" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The homepage of the person or organization. Note this is different from the
+homepage of the service where the person or organization has an account.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="identifier" type="gx:Identifier" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The list of identifiers for the agent.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="name" type="gx:TextValue" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The list of names for the agent.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="openid" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The <a href="http://openid.net/">openid</a> of the person or organization.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="phone" type="gx:ResourceReference" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The phones that belong to this person or organization.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OnlineAccount">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[An online account for a web application.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:ExtensibleData">
+        <xs:sequence>
+          <xs:element name="accountName" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The name associated the holder of this account with the account.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="serviceHomepage" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The homepage of the service that provides this account.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Attribution" final="#all">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[Attribution for genealogical information. Attribution is used to model <strong>who</strong> is contributing/modifying
+information, <strong>when</strong> they contributed it, and <strong>why</strong> they are making the
+contribution/modification.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:ExtensibleData">
+        <xs:sequence>
+          <xs:element name="contributor" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Reference to the contributor of the attributed data.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="modified" type="xs:dateTime" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The modified timestamp for the attributed data.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="changeMessage" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The "change message" for the attributed data provided by the contributor.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EvidenceReference" final="#all">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A reference to a resource that is being used as evidence.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:HypermediaEnabledData">
+        <xs:sequence>
+          <xs:element name="attribution" type="gx:Attribution" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Attribution metadata for this evidence reference.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="resource" type="xs:anyURI">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The URI to the resource being referenced as evidence.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ExtensibleData" abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A set of data that supports extension elements.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="xs:ID">
+      <xs:annotation>
+        <xs:documentation>
+          <![CDATA[A local, context-specific id for the data.]]>
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Note">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A note about a genealogical resource (e.g. conclusion or source).]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:HypermediaEnabledData">
+        <xs:sequence>
+          <xs:element name="subject" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The subject of the note. This is a short title describing the contents of the note text.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="text" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The text of the note.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="attribution" type="gx:Attribution" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Attribution metadata for a note.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The language of the note. See <a href="http://www.w3.org/International/articles/language-tags/">http://www.w3.org/International/articles/language-tags/</a>]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Qualifier">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A data qualifier. Qualifiers are used to "qualify" certain data elements to provide additional context, information, or details.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:complexType name="ResourceReference" final="#all">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A generic reference to a resource.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="resource" type="xs:anyURI">
+      <xs:annotation>
+        <xs:documentation>
+          <![CDATA[The URI to the resource. For more information, see <a href="http://www.w3.org/TR/webarch/#identification">Architecture of the World
+Wide Web, Volume One, Section 2</a>]]>
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="TextValue">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[An element representing a text value that may be in a specific language.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute ref="xml:lang">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The language of the text value. See <a href="http://www.w3.org/International/articles/language-tags/">http://www.w3.org/International/articles/language-tags/</a>]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="Conclusion" abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A genealogical conclusion.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:HypermediaEnabledData">
+        <xs:sequence>
+          <xs:element name="attribution" type="gx:Attribution" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Attribution metadata for a conclusion.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="source" type="gx:SourceReference" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The source references for a conclusion.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="analysis" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A reference to the analysis document explaining the analysis that went into this conclusion.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="note" type="gx:Note" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Notes about a person.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="confidence" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The level of confidence the contributor has about the data.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}confidenceLevel for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute ref="xml:lang">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The language of the conclusion. See <a href="http://www.w3.org/International/articles/language-tags/">http://www.w3.org/International/articles/language-tags/</a>]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Date">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A concluded genealogical date.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:ExtensibleData">
+        <xs:sequence>
+          <xs:element name="original" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The original text as supplied by the user.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="formal" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The standardized and/or normalized formal value.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Document">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[An abstract document that contains derived (conclusionary) text -- for example, a transcription or researcher analysis.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Conclusion">
+        <xs:sequence>
+          <xs:element name="text" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The document text.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="textType" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The text type of the document.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="extracted" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[Whether this document has been identified as "extracted", meaning it captures information extracted from a single source.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The type of the document.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}documentType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Event">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A historical event.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Subject">
+        <xs:sequence>
+          <xs:element name="date" type="gx:Date" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The date of this event.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="place" type="gx:PlaceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The place of this event.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="role" type="gx:EventRole" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The roles played in this event.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The type of the event.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}eventType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EventRole">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A role that a specific person plays in an event.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Conclusion">
+        <xs:sequence>
+          <xs:element name="person" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Reference to the person playing the role in the event.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="details" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Details about the role of the person in the event.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The role type.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}eventRoleType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Fact">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A conclusion about a fact applicable to a person or relationship.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Conclusion">
+        <xs:sequence>
+          <xs:element name="date" type="gx:Date" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The date of applicability of this fact.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="place" type="gx:PlaceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The place of applicability of this fact.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="value" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The value as supplied by the user.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="qualifier" type="gx:Qualifier" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The qualifiers associated with this fact.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The type of the fact.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}factType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Gender">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A gender conclusion.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Conclusion">
+        <xs:sequence/>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The type of the gender.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}genderType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Identifier" final="#all">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[An identifier for a resource.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The type of the id.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}identifierType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="Name">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A name conclusion.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Conclusion">
+        <xs:sequence>
+          <xs:element name="preferred" type="xs:boolean" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Whether the conclusion is preferred above other conclusions of the same type. Useful, for example, for display purposes.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="date" type="gx:Date" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The date the name was first applied or adopted.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="nameForm" type="gx:NameForm" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Alternate forms of the name, such as the romanized form of a non-latin name.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The type of the name.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}nameType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NameForm">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A form of a name.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:ExtensibleData">
+        <xs:sequence>
+          <xs:element name="fullText" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The full text of the name form.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="part" type="gx:NamePart" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The different parts of the name form.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The language of the conclusion. See <a href="http://www.w3.org/International/articles/language-tags/">http://www.w3.org/International/articles/language-tags/</a>]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NamePart" final="#all">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A part of a name.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:ExtensibleData">
+        <xs:sequence>
+          <xs:element name="qualifier" type="gx:Qualifier" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The qualifiers associated with this name part.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The value of the name part.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The type of the name part.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}namePartType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Person">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A person.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Subject">
+        <xs:sequence>
+          <xs:element name="living" type="xs:boolean" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Living status of the person as treated by the system. The value of this property is intended
+to be based on a system-specific calculation and therefore has limited portability. Conclusions
+about the living status of a person can be modeled with a fact.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="gender" type="gx:Gender" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The gender conclusion for the person.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="name" type="gx:Name" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The name conclusions for the person.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="fact" type="gx:Fact" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The fact conclusions for the person.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="private" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[Whether this person has been designated for limited distribution or display.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PlaceDescription">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A PlaceDescription is used to describe the details of a place in terms of its name
+and possibly its type, time period, and/or a geospatial description -- a description
+of a place as a snapshot in time.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Subject">
+        <xs:sequence>
+          <xs:element name="name" type="gx:TextValue" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[An ordered list of standardized (or normalized), fully-qualified (in terms of what is known of the applicable jurisdictional hierarchy) names for this place that are applicable to this description of this place.
+The list MUST include at least one value. It is RECOMMENDED that instances include a single name and any equivalents from other cultural contexts;
+name variants should more typically be described in separate PlaceDescription instances. The list is assumed to be given in order of preference,
+with the most preferred value in the first position in the list.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="temporalDescription" type="gx:Date" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A description of the time period to which this place description is relevant.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="latitude" type="xs:double" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Degrees north or south of the Equator (0.0 degrees). Values range from −90.0 degrees (south) to 90.0 degrees (north).]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="longitude" type="xs:double" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Angular distance in degrees, relative to the Prime Meridian. Values range from −180.0 degrees (west of the Meridian) to 180.0 degrees (east of the Meridian).]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="spatialDescription" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A reference to a geospatial description of this place.
+It is RECOMMENDED that this description resolve to a KML document.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="jurisdiction" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A reference to a description of the jurisdiction this place.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[An implementation-specific uniform resource identifier (URI) used to identify the type of a place (e.g., address, city, county, province, state, country, etc.).]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PlaceReference">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A reference to genealogical place.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:ExtensibleData">
+        <xs:sequence>
+          <xs:element name="original" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The original value as supplied by the user.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="description" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[A reference to a description of the place being referenced.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Relationship">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A relationship between two or more persons.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Subject">
+        <xs:sequence>
+          <xs:element name="person1" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A reference to a person in the relationship. The name "person1" is used only to distinguish it from
+the other person in this relationship and implies neither order nor role. When the relationship type
+implies direction, it goes from "person1" to "person2".]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="person2" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A reference to a person in the relationship. The name "person2" is used only to distinguish it from
+the other person in this relationship and implies neither order nor role. When the relationship type
+implies direction, it goes from "person1" to "person2".]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="fact" type="gx:Fact" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The fact conclusions for the relationship.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The type of this relationship.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}relationshipType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Subject" abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[The <tt>Subject</tt> data type defines the abstract concept of a genealogical <em>subject</em>. A <em>subject</em> is something with a unique and
+intrinsic identity, e.g., a person, a location on the surface of the earth. We identify that <em>subject</em> in time and space using various supporting
+<em>conclusions</em>, e.g. for a person: things like name, birth date, age, address, etc. We aggregate these supporting <em>conclusions</em> to form an
+apparently-unique identity by which we can distinguish our <em>subject</em> from all other possible <em>subjects</em>.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:Conclusion">
+        <xs:sequence>
+          <xs:element name="evidence" type="gx:EvidenceReference" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[References to the evidence being referenced for this subject.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="media" type="gx:SourceReference" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[References to multimedia resources associated with this subject.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="identifier" type="gx:Identifier" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The list of identifiers for the subject.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="extracted" type="xs:boolean">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[Whether this subject has been identified as "extracted", meaning it captures information extracted from a single source.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="HypermediaEnabledData" abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[An data type that supports hypermedia controls (i.e. links).]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:ExtensibleData">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Coverage">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[A description of the coverage of a resource.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:HypermediaEnabledData">
+        <xs:sequence>
+          <xs:element name="spatial" type="gx:PlaceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Spatial coverage.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="temporal" type="gx:Date" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Temporal coverage.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SourceCitation">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[Represents a source citation.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:HypermediaEnabledData">
+        <xs:sequence>
+          <xs:element name="value" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A rendering (as a string) of a source citation. This rendering should be the most complete rendering available.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The language of the citation. See <a href="http://www.w3.org/International/articles/language-tags/">http://www.w3.org/International/articles/language-tags/</a>]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SourceDescription">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[Represents a description of a source.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:HypermediaEnabledData">
+        <xs:sequence>
+          <xs:element name="citation" type="gx:SourceCitation" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The bibliographic citations for this source.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="mediator" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A reference to the entity that mediates access to the described source.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="source" type="gx:SourceReference" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[References to any sources to which this source is related (usually applicable to sources that are derived from or contained in another source).]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="analysis" type="gx:ResourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A reference to the analysis document explaining the analysis that went into this description of the source.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="componentOf" type="gx:SourceReference" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A reference to the source that contains this source.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="title" type="gx:TextValue" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[A list of titles for this source.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="note" type="gx:Note" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[Notes about a source.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="attribution" type="gx:Attribution" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The attribution metadata for this source description.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="identifier" type="gx:Identifier" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The list of identifiers for the source.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="rights" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The rights for this source.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="about" type="xs:anyURI">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The URI (if applicable) of the actual source.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mediaType" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[Hint about the media (MIME) type of the resource being described.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="resourceType" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[The type of the resource being described.]]>
+            </xs:documentation>
+            <xs:documentation>
+              <![CDATA[See {http://gedcomx.org/}resourceType for an enumeration of known values.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SourceReference">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[An attributable reference to a description of a source.]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="gx:HypermediaEnabledData">
+        <xs:sequence>
+          <xs:element name="attribution" type="gx:Attribution" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The attribution metadata for this source reference.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="qualifier" type="gx:Qualifier" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                <![CDATA[The qualifiers associated with this source reference.]]>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="description" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[A reference to a description of the source being referenced.]]>
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

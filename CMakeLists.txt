@@ -1,0 +1,5 @@
+CMAKE_MINIMUM_REQUIRED( VERSION 2.8.4 )
+
+PROJECT( agr )
+
+OPTION( BUILD_TESTS "Build the tests?" ON )
